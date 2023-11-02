@@ -19,3 +19,8 @@ Jika _user_ adalah nasabah, maka pilih opsi 2. Selanjutnya pilihan 3 akan menghe
 Berikut ini adalah _output_ jika _user_ memilih opsi 1 yaitu Admin. Terdapat 8 opsi yang bisa dipilih, Selanjutnya akan saya jelaskan setiap _output_ dari opsi tersebut.
 
 ### 1. Informasi nasabah
+<img src="https://github.com/Arsy278/PA_DDP_Kelompok5/assets/144969459/c04fde73-275e-4691-9b16-7f2c5ed8b245" width="390" height="250">
+
+Berikut ini adalah _output_ jika admin memilih 1 pada menu admin. Ini berisi semua informasi tentang nasabah yaitu Nama dan Saldo nasabah. Klik _enter_ pada keyboard untuk kembali ke menu admin.
+
+### 2. 
