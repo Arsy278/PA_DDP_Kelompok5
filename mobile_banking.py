@@ -55,7 +55,6 @@ def setorUang():
                         data['Saldo'] += jumlah_uang
                         tabel = PrettyTable(['Nama', 'Saldo'])
                         tabel.add_row([data['Nama'], f"Rp {data['Saldo']:,.2f}".replace(",",".")])
-                        print(tabel)
                         simpan_ke_csv()
                         print("Saldo berhasil ditambahkan.")
                         pilihanNasabah = input(str("Tampilkan Saldo ? (ya/tidak): "))
@@ -211,15 +210,14 @@ def cariNasabah():
     print(f"{'-'*40:^40}")
     print(f"{'Cari Informasi Nasabah':^40}")
     print(f"{'-'*40:^40}")
-    informasi = pwinput.pwinput("Masukkan PIN atau Nama nasabah yang ingin dicari: ")
-    informasi = int(informasi)
+    informasi = input("Masukkan PIN atau Nama nasabah yang ingin dicari: ")
     ditemukan = False
 
     for data in rekeningNasabah:
-        if data['Nama'].lower() == informasi:
+        if str(data['PIN']) == informasi or data['Nama'].lower() == informasi.lower():
             ditemukan = True
             tabel = PrettyTable(['Nama', 'Saldo'])
-            tabel.add_row([data['Nama'], f"Rp {data['Saldo']:,.2f}".replace(",", "."), data['PIN']])
+            tabel.add_row([data['Nama'], f"Rp {data['Saldo']:,.2f}".replace(",", ".")])
             print(tabel)
             break
     
@@ -227,6 +225,7 @@ def cariNasabah():
         print("Nasabah tidak ditemukan.")
     
     input("Tekan Enter untuk kembali...")
+
 
 def perbaruiRekening():
     bersihkan_layar()
@@ -287,11 +286,10 @@ def hapusRekening():
     if not ditemukan:
         print("PIN Salah atau nasabah tidak terdaftar.")
     
-    input("Tekan Enter untuk kembali ke menu addmin...")
+    input("Tekan Enter untuk kembali ke menu admin...")
 
 def menuAdmin():
     while True:
-        bersihkan_layar()
         print(f"{'-'*40:^40}")
         print(f"{'Pilih menu admin':^40}")
         print(f"{'-'*40:^40}")
@@ -348,12 +346,13 @@ def menuUtama():
                 print(f"{'-'*40:^40}")
                 print(f"{'Selamat Datang Admin Mandiri.':^40}")
                 print(f"{'-'*40:^40}")
-                userAdmin = str(input("Masukkan username admin: "))
+                userAdmin = (input("Masukkan username admin: "))
                 passAdmin = pwinput.pwinput("Masukkan password admin: ")
-                passAdmin = int(passAdmin)
+                passAdmin = str(passAdmin)
 
                 if userAdmin == dataAdmin['nama'] and passAdmin == dataAdmin['passAdmin']:
                     menuAdmin()
+                    return
 
             if opsi == 2:
                 while True:
@@ -366,7 +365,7 @@ def menuUtama():
                     print("4. Kembali ke beranda")
                     print("5. Keluar dari program")
                     print(f"{'-'*40:^40}")
-                    pilihan = int(input("Pilih Menu (1/2/3/4/5/6): "))
+                    pilihan = int(input("Pilih Menu (1/2/3/4/5): "))
 
                     if pilihan == 1:
                         print(f"{'-'*40:^40}")
@@ -379,12 +378,13 @@ def menuUtama():
                         transferUang()
                     if pilihan == 4:
                         bersihkan_layar()
-                        break
+                        menuUtama()
                     if pilihan == 5:
                         print(f"{'-'*40:^40}")
                         print(f"{'Terima Kasih !':^40}")
                         print(f"{'-'*40:^40}")
                         break
+                break
 
             if opsi == 3:
                 print(f"{'-'*40:^40}")
